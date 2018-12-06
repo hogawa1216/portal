@@ -13,7 +13,7 @@
   var myBarChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['2018.12', '2019.1', '2019.2', '2019.3', '201.4', '2019.5', '2019.6'],
+      labels: ['2018.12', '2019.1', '2019.2', '2019.3', '2019.4', '2019.5', '2019.6'],
       datasets: [
         {
           label: '三菱UFJ銀行',
@@ -44,7 +44,7 @@
           ticks: {
             suggestedMax: 100,
             suggestedMin: 0,
-            stepSize: 10,
+            stepSize: 20,
             callback: function(value, index, values){
               return  value +  '万円'
             }
