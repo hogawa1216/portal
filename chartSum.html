@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+　<title>資産</title> 
+</head>
+<body>
+  <h1>資産</h1>
+  <canvas id="myBarChart"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+  <script>
+  var ctx = document.getElementById("myBarChart");
+  var myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['2018.12', '2019.1', '2019.2', '2019.3', '201.4', '2019.5', '2019.6'],
+      datasets: [
+        {
+          label: '三菱UFJ銀行',
+          data: [280, 285, 290, 295, 300, 305, 400],
+          backgroundColor: "rgba(219,39,91,0.5)"
+        },{
+          label: '東京信用金庫',
+          data: [40, 45, 50, 55, 60, 65, 70],
+          backgroundColor: "rgba(130,201,169,0.5)"
+        },{
+          label: 'SBI',
+          data: [115, 115, 115, 115, 115, 115, 115],
+          backgroundColor: "rgba(255,183,76,0.5)"
+        },{
+          label: '明治安田',
+          data: [115, 115, 115, 115, 115, 115, 115],
+          backgroundColor: "rgba(147,15,255,0.4)"
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: '口座合算'
+      },
+      scales: {
+         xAxes:[{
+          stacked: true
+        }],
+        yAxes: [{
+                    stacked: true,
+          ticks: {
+            suggestedMax: 100,
+            suggestedMin: 0,
+            stepSize: 100,
+            callback: function(value, index, values){
+              return  value +  '万円'
+            }
+          }
+        }]
+      },
+    }
+  });
+  </script>
+</body>
+</html>
