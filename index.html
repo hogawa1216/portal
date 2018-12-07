@@ -162,6 +162,7 @@
 function getCSV(){
     var req = new XMLHttpRequest();
     req.open("get", "test.csv", true);
+    req.overrideMimeType('text/plain; charset=Shift_JIS');
     req.send(null);
 
     req.onload = function(){
