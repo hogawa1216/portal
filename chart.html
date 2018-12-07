@@ -23,10 +23,11 @@
 
   function convertCSVtoArray(str){
       csvData = [];
-      var lines = str.split("\n");
+      var lines = str.split("\r\n");
       for (var i = 0; i < lines.length; ++i) {
         var cells = lines[i].split(",");
         csvData.push(cells);
+        alert("2");
       }
       alert("1");
       return csvData;
