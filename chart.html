@@ -23,7 +23,7 @@
 
   function convertCSVtoArray(str){
       csvData = [];
-      var lines = str.split("\r\n");
+      var lines = str.split("\n");
       for (var i = 0; i < lines.length; ++i) {
         var cells = lines[i].split(",");
         csvData.push(cells);
