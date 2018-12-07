@@ -9,9 +9,16 @@
   <canvas id="myBarChart"></canvas>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
   <script>
+  
+  
+  
+  
+  
+  
+  
 function csv2Array(str) {
   var csvData = [];
-  var lines = str.split("\r\n");
+  var lines = str.split("\n");
   for (var i = 0; i < lines.length; ++i) {
     var cells = lines[i].split(",");
     csvData.push(cells);
@@ -26,9 +33,23 @@ function drawBarChart(data) {
     tmpLabels.push(data[row][0])
     tmpData1.push(data[row][1])
 
-  }
-  
-  function main() {
+  };
+
+  // 4)chart.jsで描画
+  var ctx = document.getElementById("myChart").getContext("2d");
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: tmpLabels,
+      datasets: [
+        { label: "", data: tmpData1, backgroundColor: "#ffa500" },
+
+      ]
+    }
+  });
+}
+
+function main() {
   // 1) ajaxでCSVファイルをロード
   var req = new XMLHttpRequest();
   var filePath = 'test.csv';
@@ -43,6 +64,10 @@ function drawBarChart(data) {
 }
 
 main();
+
+
+
+
 
 
   </script>
