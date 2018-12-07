@@ -21,16 +21,20 @@
   }
 
   function convertCSVtoArray(str){
-      tmp = str.split("\r\n");
-      alert(tmp[0]);
+      var tmp = str.split("\r\n");
+      var result = []; 
+      alert("1");
+          var tmp = str.split(",");
+    alert("データ1："+tmp[0]]);
       // 各行ごとにカンマで区切った文字列を要素とした二次元配列を生成
       //for(var i=0;i<tmp.length;++i){
        //alert(tmp[i]);
       //}
   }
-  var tmp;
   getCSV();
-
+  </script>
+  
+  <script>
   var ctx = document.getElementById("myBarChart");
   
   var myBarChart = new Chart(ctx, {
@@ -48,7 +52,7 @@
           backgroundColor: "rgba(130,201,169,0.5)"
         },{
           label: 'SBI',
-          data: [tmp[1]],
+          data: [115, 115, 115, 115, 115, 115, 115],
           backgroundColor: "rgba(255,183,76,0.5)"
         },{
           label: '明治安田',
