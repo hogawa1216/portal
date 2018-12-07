@@ -9,67 +9,87 @@
   <canvas id="myBarChart"></canvas>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
   <script>
-  
-  
-  
-  
-  
-  
-  
-function csv2Array(str) {
-  var csvData = [];
-  var lines = str.split("\n");
-  for (var i = 0; i < lines.length; ++i) {
-    var cells = lines[i].split(",");
-    csvData.push(cells);
-  }
-  return csvData;
-}
+  var csvData;
+    function getCSV(){
+      var req = new XMLHttpRequest();
+      req.open("get", "test.csv", true);
+      req.overrideMimeType('text/plain; charset=UTF-8');
+      req.send(null);
 
-function drawBarChart(data) {
-  // 3)chart.jsのdataset用の配列を用意
-  var tmpLabels = [], tmpData1 = [];
-  for (var row in data) {
-    tmpLabels.push(data[row][0])
-    tmpData1.push(data[row][1])
-
+      req.onload = function(){
+      convertCSVtoArray(req.responseText);
+    }
   }
 
-  // 4)chart.jsで描画
-  var ctx = document.getElementById("myBarChart").getContext("2d");
-  var myChart = new Chart(ctx, {
+function convertCSVtoArray(str){
+      var csvData = [];
+      var lines = str.split("\r\n");
+      for (var i = 0; i < lines.length; ++i) {
+        var cells = lines[i].split(",");
+        csvData.push(cells);
+      }
+      alert("1");
+
+  
+  
+  
+  
+
+
+  var ctx = document.getElementById("myBarChart");
+  
+  var myBarChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: tmpLabels,
+      labels: ['2018.12', '2019.1', '2019.2', '2019.3', '2019.4', '2019.5', '2019.6'],
       datasets: [
-        { label: "", data: tmpData1, backgroundColor: "#ffa500" },
-
+        {
+          label: '三菱UFJ銀行',
+          data: csvData[0],
+          backgroundColor: "rgba(219,39,91,0.5)"
+        },{
+          label: '東京信用金庫',
+          data: [40, 45, 50, 55, 60, 65, 70],
+          backgroundColor: "rgba(130,201,169,0.5)"
+        },{
+          label: 'SBI',
+          data: [115, 115, 115, 115, 115, 115, 115],
+          backgroundColor: "rgba(255,183,76,0.5)"
+        },{
+          label: '明治安田',
+          data: [115, 115, 115, 115, 115, 115, 115],
+          backgroundColor: "rgba(147,15,255,0.4)"
+        }
       ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: '口座別資産'
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            suggestedMax: 100,
+            suggestedMin: 0,
+            stepSize: 20,
+            callback: function(value, index, values){
+              return  value +  '万円'
+            }
+          }
+        }]
+      },
     }
   });
+  
+  
+  
 }
-
-function main() {
-  // 1) ajaxでCSVファイルをロード
-  var req = new XMLHttpRequest();
-  var filePath = 'test.csv';
-  req.open("GET", filePath, true);
-  req.onload = function() {
-    // 2) CSVデータ変換の呼び出し
-    data = csv2Array(req.responseText);
-    // 3) chart.jsデータ準備、4) chart.js描画の呼び出し
-    drawBarChart(data);
-  }
-  req.send(null);
-}
-
-main();
-
-
-
-
-
-
+  
+  
+  
+  
+    getCSV();
   </script>
 </body>
 </html>
