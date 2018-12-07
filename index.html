@@ -158,24 +158,7 @@
 </div>
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
-<script>
-function getCSV(){
-    var req = new XMLHttpRequest();
-    req.open("get", "test.csv", true);
-    req.overrideMimeType('text/plain; charset=UTF-8');
-    req.send(null);
 
-    req.onload = function(){
-    convertCSVtoArray(req.responseText);
-    }
-}
-
-function convertCSVtoArray(str){
-    var tmp = str.split(",");
-    alert("データ1："+tmp[0]+"データ2："+tmp[1]+"データ3："+tmp[2]);
-}
-getCSV();
-</script>
 
 <script  src="js/index.js"></script>
 
