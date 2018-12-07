@@ -9,7 +9,7 @@
   <canvas id="myBarChart"></canvas>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
   <script>
-  var csvData = [];
+  var tmp;
     function getCSV(){
       var req = new XMLHttpRequest();
       req.open("get", "test.csv", true);
@@ -22,7 +22,7 @@
   }
 
   function convertCSVtoArray(str){
-      csvData = [];
+      var csvData = [];
       var lines = str.split("\r\n");
       for (var i = 0; i < lines.length; ++i) {
         var cells = lines[i].split(",");
@@ -52,7 +52,7 @@
           backgroundColor: "rgba(219,39,91,0.5)"
         },{
           label: '東京信用金庫',
-          data: [csvData],
+          data: [40, 45, 50, 55, 60, 65, 70],
           backgroundColor: "rgba(130,201,169,0.5)"
         },{
           label: 'SBI',
