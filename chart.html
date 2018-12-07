@@ -9,7 +9,7 @@
   <canvas id="myBarChart"></canvas>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
   <script>
-  var csvData = [];
+
     function getCSV(){
       var req = new XMLHttpRequest();
       req.open("get", "test.csv", true);
@@ -34,7 +34,7 @@
   
   
   
-  
+  var csvData = [];
   getCSV();
 
   var ctx = document.getElementById("myBarChart");
