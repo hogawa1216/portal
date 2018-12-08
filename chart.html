@@ -41,11 +41,11 @@ function convertCSVtoArray(str){
   var myBarChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['2018.12', '2019.1', '2019.2', '2019.3', '2019.4', '2019.5', '2019.6'],
+      labels: csvData[0],
       datasets: [
         {
           label: '三菱UFJ銀行',
-          data: csvData[0],
+          data: csvData[1],
           backgroundColor: "rgba(219,39,91,0.5)"
         },{
           label: '東京信用金庫',
