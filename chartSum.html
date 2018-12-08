@@ -9,27 +9,46 @@
   <canvas id="myBarChart"></canvas>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
   <script>
+  var csvData;
+  function getCSV(){
+    var req = new XMLHttpRequest();
+    req.open("get", "test.csv", true);
+    req.overrideMimeType('text/plain; charset=UTF-8');
+    req.send(null);
+
+    req.onload = function(){
+      convertCSVtoArray(req.responseText);
+    }
+  }
+  
+  function convertCSVtoArray(str){
+    var csvData = [];
+    var lines = str.split("\n");
+    for (var i = 0; i < lines.length; ++i) {
+      var cells = lines[i].split(",");
+      csvData.push(cells);
+    }
   var ctx = document.getElementById("myBarChart");
   var myBarChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['2018.12', '2019.1', '2019.2', '2019.3', '2019.4', '2019.5', '2019.6'],
+      labels csvData[0],
       datasets: [
         {
           label: '三菱UFJ銀行',
-          data: [280, 285, 290, 295, 300, 305, 400],
+          data: csvData[0];
           backgroundColor: "rgba(219,39,91,0.5)"
         },{
           label: '東京信用金庫',
-          data: [40, 45, 50, 55, 60, 65, 70],
+          data: csvData[1];
           backgroundColor: "rgba(130,201,169,0.5)"
         },{
           label: 'SBI',
-          data: [115, 115, 115, 115, 115, 115, 115],
+          data: csvData[2];
           backgroundColor: "rgba(255,183,76,0.5)"
         },{
           label: '明治安田',
-          data: [115, 115, 115, 115, 115, 115, 115],
+          data: csvData[3];
           backgroundColor: "rgba(147,15,255,0.4)"
         }
       ]
@@ -57,6 +76,8 @@
       },
     }
   });
+}
+getCSV();
   </script>
 </body>
 </html>
